@@ -15,4 +15,9 @@ export class ProduitService {
   saveProduit(produit:any){
     return this.http.post("http://localhost:3333" , produit)
   }
+
+  deleteP(id:any){
+    return this.http.delete("http://localhost:3333/"+ id)
+  }
+  
 }

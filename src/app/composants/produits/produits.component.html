@@ -1,20 +1,53 @@
 <div class="container">
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" *ngFor="let p of produits">
-        <div class="card h-100 " >
-            <img src="{{p.urlImage}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{p.titre}}</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Prix: {{p.prix}} €</small>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let p of produits">
+            <div class="card h-100 ">
+                <img src="{{p.urlImage}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{p.titre}}</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional
+                        content. This content is a little bit longer.</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Prix: {{p.prix}} €</small>
+
+                    <!-- Button trigger modal -->
+                    <button class="btn btn-danger ml-aut " data-bs-toggle="modal"
+                        data-bs-target="#confirmDelete">Supprimer</button>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="confirmDeleteLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmDeleteLabel">Supprimer {{p.titre}}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Etes vous sur de vouloir Supprimer {{p.titre}} cette action est définitive </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                    (click)="deleteProduit(p._id)">Supprimer définititvement</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- fin modal delete -->
+
+
+
+
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 
 </div>

@@ -22,5 +22,13 @@ export class ProduitsComponent implements OnInit {
     })
   }
 
+
+  deleteProduit(id:any){
+    this.produitService.deleteP(id).subscribe(() =>{
+      console.log("produit avec l'id" + id + "delete");
+
+      this.products();
+    })
+  }
   
 }
