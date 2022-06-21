@@ -9,39 +9,174 @@
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                         additional
                         content. This content is a little bit longer.</p>
+
+                        <!-- début tableau description -->
+                    <div class="tableau">
+                        <div class="tabletop">
+                            <table>
+                                <thead class="border border-dark">
+                                    <tr>
+                                        <th class="table-warning">Puissance</th>
+                                        <th class="me-5 bg-info">Autonomie</th>
+                                        <th class="me-5 bg-light">Equivalence</th>
+                                        <th class="me-5 bg-light">id</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table-warning">{{p.puissance}} Watt</td>
+                                        <td class="table-info">{{p.autonomie}}</td>
+                                        <td class="table-light">{{p.equivalent}}</td>
+                                        <td class="table-light">{{p.id}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+    
+                        <div class="tablebtm">
+                            <table>
+                                <thead class="border border-dark">
+                                    <tr>
+                                        <th class="me-5 bg-secondary">Prix</th>
+                                        <th class="me-5 bg-success">Permis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="table-secondary">{{p.prix}}€</td>
+                                        <td class="table-success">{{p.permis}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <!-- FIN tableau description -->
+
+
+
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Prix: {{p.prix}} €</small>
 
-                    <!-- Button trigger modal -->
+                    <!-- Button trigger modal SUPPRERSSION -->
                     <button class="btn btn-danger ml-aut " data-bs-toggle="modal"
-                        data-bs-target="#confirmDelete">Supprimer</button>
+                        data-bs-target="#confirmDelete" (click)="recupInfo(p)">Supprimer</button>
+                        <!-- avant de supprimer avertissement dans une modal pour passer du current à la modal RECUPERER DONNEES DU CURRENT -->
+
+
+                    <!-- Button trigger modal UPDATE -->
+                    <button class="btn btn-warning ml-aut " (click)="recupInfo(p)" data-bs-toggle="modal"
+                        data-bs-target="#makeUpdate">edit</button>
                 </div>
 
 
-                <!-- Modal -->
+                <!--MODAL DELETE apès avoir récup info du current à DELETE  -->
                 <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="confirmDeleteLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteLabel">Supprimer {{produitAmodif.titre}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Etes vous sur de vouloir Supprimer {{produitAmodif.titre}} cette action est définitive </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                (click)="deleteProduit(produitAmodif._id)">Supprimer définititvement</button>
+                    <!--info récup pour la modal "recupInfo(p)" (click)="method(objetmodal._id)" !!!underscore _id  -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!--MODAL DELETE apès avoir récup info du current à DELETE -->
+
+
+
+
+
+                <!-- Modal confirmer UPDATE -->
+                <div class="modal fade" id="makeUpdate" tabindex="-1" aria-labelledby="makeUpdateLabel"
                     aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="confirmDeleteLabel">Supprimer {{p.titre}}</h5>
+                                <h5 class="modal-title" id="makeUpdateLabel">EDITER {{produitAmodif.titre}}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>Etes vous sur de vouloir Supprimer {{p.titre}} cette action est définitive </p>
+                                <p>EDITER {{produitAmodif.prix}} </p>
+
+                                <!--////////////////////////////////////////// FORMULAIRE EDITION////////////////////// -->
+                                <form>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon3">entrer le nom/titre de la
+                                            moto</span>
+                                        <input type="text" class="form-control" name="titre"
+                                            aria-describedby="basic-addon3" [(ngModel)]="produitAmodif.titre" required>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon3">entrer autonomie en précisant
+                                            km</span>
+                                        <input type="text" class="form-control" name="autonomie"
+                                            aria-describedby="basic-addon3" [(ngModel)]="produitAmodif.autonomie">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon3">entrer le type de permis</span>
+                                        <input type="text" class="form-control" name="permis"
+                                            aria-describedby="basic-addon3" [(ngModel)]="produitAmodif.permis">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon3">entrer le prix</span>
+                                        <input type="number" class="form-control" name="prix"
+                                            aria-describedby="basic-addon3" [(ngModel)]="produitAmodif.prix">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon3">entrer la puissance en
+                                            Watt</span>
+                                        <input type="number" class="form-control" name="puissance"
+                                            aria-describedby="basic-addon3" [(ngModel)]="produitAmodif.puissance">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon3">entrer l'équivalent par rapport
+                                            à une moto classique</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon3"
+                                        name="equivalent" [(ngModel)]="produitAmodif.equivalent">
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon3">entrer l'url de l'image</span>
+                                        <input type="text" class="form-control" name="urlImage"
+                                            aria-describedby="basic-addon3" [(ngModel)]="produitAmodif.urlImage">
+                                    </div>
+
+
+
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ajoutReussi"
+                                        type="submit" (click)="prodUpdate()" >Valider</button>
+
+
+                                </form>
+                                <!--////////////////////////////////////////// fin FORMULAIRE EDITION////////////////////// -->
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                                    (click)="deleteProduit(p._id)">Supprimer définititvement</button>
+                                <button type="button" class="btn btn-secondary" (click)="products()" data-bs-dismiss="modal" >Annuler</button>
+                                <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                    (click)="deleteProduit(p._id)">Supprimer définititvement</button> -->
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- fin modal delete -->
-
+                <!-- fin modal UPDATE -->
 
 
 

@@ -16,8 +16,12 @@ export class ProduitService {
     return this.http.post("http://localhost:3333" , produit)
   }
 
-  deleteP(id:any){
-    return this.http.delete("http://localhost:3333/"+ id)
+  deleteP(_id:any){
+    return this.http.delete("http://localhost:3333/"+ _id)
+  }
+
+  produitUpdate(produit:any){
+    return this.http.patch("http://localhost:3333/"+produit._id, produit)
   }
   
 }
