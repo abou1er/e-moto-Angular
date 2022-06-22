@@ -24,4 +24,8 @@ export class ProduitService {
     return this.http.patch("http://localhost:3333/"+produit._id, produit)
   }
   
+  getbyCategoPermis(catego:any){
+    return this.http.get(`http://localhost:3333/vehicules?permis=${catego}`)
+  
+  }
 }

@@ -20,6 +20,11 @@ export class ProduitsComponent implements OnInit {
     urlImage:""
   }
 
+  // tableau pour tri par permis
+  recupPermis : any;
+  categoriePermis= ["Permis A1","Permis B + Formation 7h", "permis moto", 
+  "sans permis", "non homologuée" ];
+
   constructor(private produitService : ProduitService) { }
 
   ngOnInit(): void {
@@ -34,6 +39,13 @@ export class ProduitsComponent implements OnInit {
   }
 
 
+  onCategoryPermis(cP:any){
+    this.produitService.getbyCategoPermis(cP).subscribe(data =>{
+        this.produits = data;
+    })
+    console.log("moto coorespondant : ", cP);
+    
+  }
   
   recupInfo(p:any){
     this.produitAmodif = p;
@@ -57,5 +69,8 @@ export class ProduitsComponent implements OnInit {
       
     })
   }
+  
+
+
   
 }
