@@ -1,5 +1,6 @@
-<div class="row">
 
+<!-- ////////////////////// bar tri /////////////////////////////////// -->
+<div class="row">     <!-- tri par catégorie moto -->
     <div class="col-2 mt-5 mb-5">
         <div class="btn-group d-flex align-item-center">
             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -16,11 +17,44 @@
         <!-- </div> -->
     </div>
 
+    <div class="col-2 mt-5 mb-5">  <!-- espace vide -->
+        </div>
     <div class="col-2 mt-5 mb-5">
-    <button type="button" class="btn btn-sm btn-warning" (click)="products()"  >reset</button>
+    <button type="button" class="w-100 btn btn-sm btn-warning" (click)="products()"  >reset</button>
     </div>
-
 </div>
+
+<!-- //////////////////////fin bar tri /////////////////////////////////// -->
+
+<div class="mx-3 container-fluid">
+    <!----------------------------------------------- searchByPrice -->
+    <form #formTrie="ngForm" (ngSubmit)="searchByPrice(formTrie.value)" class="d-flex mt-5" role="search">
+        <!-- Le composant va récupérer l'ensemble des données du formulaire sous forme dobjet et en précisant lename je récuperai dans le composant seulement la valeur de linput du même name qui m'intéresse -->
+        <div class="row g-3 ">
+
+            <div class="col-auto">
+                <label for="inputNumbMin" class="col-form-label">Prix minimum</label>
+                <input type="number" name="nameMin" class="form-control" placeholder="prix minimum" ngModel>
+            </div>
+            <div class="col-auto">
+                <label class="col-form-label">Prix maximum</label> <input type="number" name="nameMax"
+                    class="form-control" placeholder="prix maximum" ngModel>
+
+            </div>
+
+            <div class=""><button type="submit" class="btn btn-info">Trier par prix</button></div>
+
+        </div>
+    </form>
+
+    <!-- <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-info" (click)="searchByPrice()">Afficher tout les produits</button>
+    </div> -->
+</div>
+
+
+
+
 
 <div class="container ">
 

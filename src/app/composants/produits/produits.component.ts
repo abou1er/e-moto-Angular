@@ -71,6 +71,16 @@ export class ProduitsComponent implements OnInit {
   }
   
 
+  searchByPrice(dataForm:any){
+    console.log(dataForm.nameMin);
+    console.log(dataForm.nameMax);
+    this.produitService.getbyprice(dataForm.nameMin, dataForm.nameMax).subscribe(data =>{
+      this.produits = data;
 
+
+      console.log("this.produits = ", this.produits);
+    } )
+    
+  }
   
 }
