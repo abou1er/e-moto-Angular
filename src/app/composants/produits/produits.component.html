@@ -26,6 +26,21 @@
 
 <!-- //////////////////////fin bar tri /////////////////////////////////// -->
 
+
+<div class="row">
+    <!-- --------------input recherche par mot clé -->
+    <div class="d-flex justify-content-end">
+        <form #inpSearch="ngForm" (ngSubmit)="searchByKeyWord(inpSearch.value)" class="d-flex" role="search">
+            <!-- #identificationFormulaire  (ngSubmit)au submit lance méthode avec la valeur du formulaire-->
+            <input class="form-control me-2" type="text" placeholder="Chercher une chambre" aria-label="Search"
+                name="nameInptSearchBar" ngModel>
+            <button class="btn text-dark btn-outline-success bg-light" type="submit">Chercher une chambre</button>
+        </form>
+    </div>
+
+</div>
+
+
 <div class="mx-3 container-fluid">
     <!----------------------------------------------- searchByPrice -->
     <form #formTrie="ngForm" (ngSubmit)="searchByPrice(formTrie.value)" class="d-flex mt-5" role="search">
@@ -57,6 +72,24 @@
 
 
 <div class="container ">
+            <!-- message reponse recherche -->
+        <div class="container p-5 m-5 border border-5 border-success" *ngIf="totalSearchInp">
+            <p>Objet trouvée : <strong>{{this.totalFound}}</strong> <br> Il y a {{this.totalFound}} objet(s) correspondant contenant la
+                recherche
+                <strong>{{this.valInptSearch.value}}</strong>
+            </p>
+        </div>
+
+        <div class="container p-5 m-5 border border-5 border-light" *ngIf="totalFork">
+            <p>Objet trouvée : <strong>{{this.totalFound}}</strong> <br> Il y a {{this.totalFound}} objet(s) correspondant à cette fourchette de prix
+                <strong>min: {{this.valMin}}    max: {{this.valMax}}</strong>
+            </p>
+        </div>
+        <div class="container p-5 m-5 border border-5 border-light" *ngIf="totalCat">
+            <p>Objet trouvée : <strong>{{this.produits.length}}</strong> <br> Il y a {{this.produits.length}} objet(s) correspondant à cette catégorie <strong>{{this.nombreCat}}</strong> 
+            </p>
+        </div>
+            <!-- FIN message reponse recherche -->
 
     <div class="col-12">
         <div class="row row-cols-1 row-cols-md-3 g-4">

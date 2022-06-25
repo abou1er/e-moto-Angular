@@ -34,4 +34,9 @@ export class ProduitService {
     return this.http.get(`http://localhost:3333/byPrice?min=${min}&max=${max}`)  
     // return this.http.get("http://localhost:3000/produits?price_gte="+min +"&price_lte="+max) json
   }
+
+  getbyKeyWord(word:any){
+    return this.http.get(`http://localhost:3333/keyWord?motCles=${word}`)  
+    // return this.http.get("http://localhost:3000/produits?price_gte="+min +"&price_lte="+max) json
+  }
 }
